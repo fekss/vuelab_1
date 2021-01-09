@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Основы Vue</title>
+    <link rel="stylesheet" href="theme.css" />
+  </head>
+  <body>
+
+  <div class="container" id="app">
+    <div class="card">
+      <h1>План по изучению Vue.js</h1>
+
+      <div class="steps">
+
+        <div class="steps-content" >
+          {{ currentStep.text }}
+        </div>
+
+        <ul class="steps-list" >
+          <li class="steps-item" :class="listItemClass(idx)" @click="setActive(idx)" v-for="(step, idx) in steps">
+            <span>{{ idx+1 }}</span> {{ step.title }}
+          </li>
+        </ul>
+
+        <div>
+          <button class="btn"         @click="prev()"         v-show="!isFinished" :disabled="isFirstStep">Назад</button>
+          <button class="btn primary" @click="nextOfFinish()" v-show="!isFinished" >{{ isLastStep ? 'Завершить': 'Вперед' }}</button>
+          <button class="btn primary" @click="reset()"        v-show="isFinished" >Начать заново</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="vue.js"></script>
+  </body>
+</html>
